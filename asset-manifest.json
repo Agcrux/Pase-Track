@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Pase-Track/static/css/main.c124b6f8.css",
+    "main.js": "/Pase-Track/static/js/main.b8be740b.js",
+    "static/js/453.6920857f.chunk.js": "/Pase-Track/static/js/453.6920857f.chunk.js",
+    "index.html": "/Pase-Track/index.html",
+    "main.c124b6f8.css.map": "/Pase-Track/static/css/main.c124b6f8.css.map",
+    "main.b8be740b.js.map": "/Pase-Track/static/js/main.b8be740b.js.map",
+    "453.6920857f.chunk.js.map": "/Pase-Track/static/js/453.6920857f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c124b6f8.css",
+    "static/js/main.b8be740b.js"
+  ]
+}
