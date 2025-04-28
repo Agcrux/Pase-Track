@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Pase-Track/static/css/main.75ddf3f1.css",
-    "main.js": "/Pase-Track/static/js/main.83e1085c.js",
-    "static/js/453.73a23a10.chunk.js": "/Pase-Track/static/js/453.73a23a10.chunk.js",
+    "main.css": "/Pase-Track/static/css/main.8059d67d.css",
+    "main.js": "/Pase-Track/static/js/main.00b82d90.js",
+    "static/js/453.6920857f.chunk.js": "/Pase-Track/static/js/453.6920857f.chunk.js",
     "index.html": "/Pase-Track/index.html",
-    "main.75ddf3f1.css.map": "/Pase-Track/static/css/main.75ddf3f1.css.map",
-    "main.83e1085c.js.map": "/Pase-Track/static/js/main.83e1085c.js.map",
-    "453.73a23a10.chunk.js.map": "/Pase-Track/static/js/453.73a23a10.chunk.js.map"
+    "main.8059d67d.css.map": "/Pase-Track/static/css/main.8059d67d.css.map",
+    "main.00b82d90.js.map": "/Pase-Track/static/js/main.00b82d90.js.map",
+    "453.6920857f.chunk.js.map": "/Pase-Track/static/js/453.6920857f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.75ddf3f1.css",
-    "static/js/main.83e1085c.js"
+    "static/css/main.8059d67d.css",
+    "static/js/main.00b82d90.js"
   ]
 }
