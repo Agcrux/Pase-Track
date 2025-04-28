@@ -1,0 +1,937 @@
+body {
+  background: repeating-linear-gradient(
+    45deg,
+    #2d4a32,
+    #2d4a32 10px,
+    #1a3a1f 10px,
+    #1a3a1f 20px
+  );
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #355E3B;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: white;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 20px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.student-id {
+  color: #2d4a32;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.event-card {
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.event-type-class { background-color: #4CAF50; }
+.event-type-study { background-color: #2196F3; }
+.event-type-exercise { background-color: #FF9800; }
+.event-type-other { background-color: #9C27B0; }
+
+/* Add styles for the calendar */
+.MuiPaper-root {
+  background-color: white !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+.MuiDialog-paper {
+  background: linear-gradient(135deg, #2d4a32 0%, #1a3a1f 100%) !important;
+  color: #FFD700 !important;
+  border-radius: 10px !important;
+  padding: 1.5rem !important;
+}
+
+.MuiDialogTitle-root {
+  color: #FFD700 !important;
+  text-align: center !important;
+  padding-bottom: 1rem !important;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2) !important;
+}
+
+.MuiDialogContent-root {
+  padding: 1.5rem !important;
+}
+
+.MuiDialogActions-root {
+  padding: 1.5rem !important;
+  border-top: 1px solid rgba(255, 215, 0, 0.2) !important;
+}
+
+/* Ensure text fields are visible */
+.MuiTextField-root {
+  margin-bottom: 1rem !important;
+}
+
+.MuiOutlinedInput-root {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 215, 0, 0.3) !important;
+  color: #FFD700 !important;
+}
+
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #FFD700 !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #FFD700 !important;
+}
+
+.MuiInputLabel-root {
+  color: #FFD700 !important;
+}
+
+.MuiInputBase-input {
+  color: #FFD700 !important;
+}
+
+.MuiSelect-select {
+  color: #FFD700 !important;
+}
+
+.MuiSelect-icon {
+  color: #FFD700 !important;
+}
+
+/* Style the date picker */
+.MuiPickersPopper-paper {
+  background-color: white !important;
+  border-radius: 8px !important;
+}
+
+/* Button styles */
+.MuiButton-contained {
+  background-color: #FFD700 !important;
+  color: #2d4a32 !important;
+  font-weight: bold !important;
+}
+
+.MuiButton-contained:hover {
+  background-color: #FFC107 !important;
+}
+
+.MuiButton-outlined {
+  border-color: #FFD700 !important;
+  color: #FFD700 !important;
+}
+
+.MuiButton-outlined:hover {
+  background-color: rgba(255, 215, 0, 0.1) !important;
+}
+
+/* Typography styles */
+.MuiTypography-h4 {
+  color: white;
+  font-weight: 600 !important;
+}
+
+.MuiTypography-h6 {
+  color: white;
+  font-weight: 600 !important;
+}
+
+/* Desktop Layout */
+.dashboard-container {
+  padding: 2rem;
+  min-height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.dashboard-content {
+  background-color: rgba(45, 74, 50, 0.9);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+.calendar-container {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.calendar-grid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.weekday-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: #2d4a32;
+  color: #FFD700;
+  font-weight: bold;
+  width: 100%;
+}
+
+.weekday-cell {
+  padding: 12px;
+  text-align: center;
+  border-right: 1px solid rgba(255, 215, 0, 0.2);
+  font-size: 0.9rem;
+}
+
+.weekday-cell:last-child {
+  border-right: none;
+}
+
+.calendar-day {
+  min-height: 100px;
+  padding: 8px;
+  background-color: white;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.calendar-day:nth-child(7n) {
+  border-right: none;
+}
+
+.calendar-day:last-child {
+  border-bottom: none;
+}
+
+.day-number {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.calendar-day.today .day-number {
+  color: #FFD700;
+  background-color: #2d4a32;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.day-events {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.event-indicator {
+  height: 4px;
+  border-radius: 2px;
+  margin: 2px 0;
+}
+
+.event-indicator.sleep {
+  background-color: #9C27B0;
+}
+
+.event-indicator.exercise {
+  background-color: #FF9800;
+}
+
+.event-indicator.study {
+  background-color: #2196F3;
+}
+
+.event-indicator:hover {
+  height: 6px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .calendar-grid {
+    width: 100%;
+  }
+  
+  .weekday-cell {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+  
+  .calendar-day {
+    min-height: 60px;
+    padding: 4px;
+  }
+  
+  .day-number {
+    font-size: 0.8rem;
+  }
+  
+  .event-indicator {
+    height: 3px;
+  }
+}
+
+.event-dialog {
+  background: linear-gradient(135deg, #2d4a32 0%, #1a3a1f 100%);
+  color: #FFD700;
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.event-dialog-title {
+  color: #FFD700;
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.event-dialog-content {
+  padding: 1.5rem;
+}
+
+.event-dialog-field {
+  margin-bottom: 1rem;
+}
+
+.event-dialog-field label {
+  color: #FFD700;
+}
+
+.event-dialog-field input,
+.event-dialog-field select {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 215, 0, 0.3);
+  color: #FFD700;
+}
+
+.event-dialog-actions {
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+@media (max-width: 600px) {
+  .event-dialog {
+    margin: 1rem;
+    padding: 1rem;
+  }
+  
+  .event-dialog-title {
+    font-size: 1.2rem;
+  }
+  
+  .event-dialog-field input,
+  .event-dialog-field select {
+    font-size: 0.9rem;
+  }
+  
+  .event-dialog-actions {
+    padding: 1rem;
+  }
+  
+  .event-dialog-actions button {
+    font-size: 0.9rem;
+  }
+}
+
+.analytics-container {
+  padding: 2rem;
+}
+
+.analytics-card {
+  background-color: rgba(45, 74, 50, 0.9);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.analytics-title {
+  color: #FFD700;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+}
+
+.stat-title {
+  color: #FFD700;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.stat-value {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .analytics-container {
+    padding: 1rem;
+  }
+  
+  .analytics-card {
+    padding: 15px;
+  }
+  
+  .analytics-title {
+    font-size: 1.2rem;
+  }
+  
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stat-card {
+    padding: 10px;
+  }
+  
+  .stat-value {
+    font-size: 1.2rem;
+  }
+}
+
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #2d4a32;
+  color: #FFD700;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 1000;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .notification {
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    text-align: center;
+  }
+}
+
+.calendar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #2d4a32;
+  color: #FFD700;
+  border-radius: 8px 8px 0 0;
+}
+
+.nav-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.current-month {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #FFD700;
+}
+
+.logout-button, .notifications-button {
+  background-color: transparent;
+  border: 1px solid #FFD700;
+  color: #FFD700;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-button:hover, .notifications-button:hover {
+  background-color: rgba(255, 215, 0, 0.1);
+}
+
+.add-event-button {
+  background-color: #FFD700;
+  color: #2d4a32;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.add-event-button:hover {
+  background-color: #FFC107;
+}
+
+.calendar-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.analytics-section {
+  width: 300px;
+  min-width: 300px;
+  background-color: rgba(45, 74, 50, 0.9);
+  border-radius: 8px;
+  padding: 20px;
+  margin-left: 20px;
+}
+
+.week-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.time-column {
+  width: 60px;
+  border-right: 1px solid #ddd;
+}
+
+.time-label {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #666;
+  border-bottom: 1px solid #ddd;
+}
+
+.week-grid {
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+
+.week-header {
+  display: flex;
+  background-color: #2d4a32;
+  color: #FFD700;
+  border-radius: 8px 8px 0 0;
+}
+
+.week-day-header {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border-right: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.week-day-name {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.week-date {
+  font-size: 0.8rem;
+  color: rgba(255, 215, 0, 0.8);
+}
+
+.today .week-date {
+  color: #FFD700;
+  background-color: rgba(255, 215, 0, 0.1);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.week-column {
+  flex: 1;
+  border-right: 1px solid #ddd;
+}
+
+.time-slot {
+  height: 60px;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+.week-event {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+  font-size: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.week-event:hover {
+  opacity: 0.9;
+}
+
+.week-event.sleep {
+  background-color: #9C27B0;
+}
+
+.week-event.exercise {
+  background-color: #FF9800;
+}
+
+.week-event.study {
+  background-color: #2196F3;
+}
+
+.week-event.other {
+  background-color: #4CAF50;
+}
+
+.event-time {
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+.event-title {
+  font-weight: bold;
+  margin-top: 2px;
+}
+
+.current-time-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #FF0000;
+  z-index: 1;
+}
+
+.current-time-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #FF0000;
+  border-radius: 50%;
+  top: -3px;
+  left: -4px;
+}
+
+.mini-calendar {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.mini-calendar-header {
+  background-color: #2d4a32;
+  color: #FFD700;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.mini-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  padding: 10px;
+}
+
+.mini-calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.mini-calendar-day:hover {
+  background-color: rgba(45, 74, 50, 0.1);
+}
+
+.mini-calendar-day.today {
+  background-color: #2d4a32;
+  color: #FFD700;
+}
+
+.mini-calendar-day.selected {
+  background-color: #FFD700;
+  color: #2d4a32;
+}
+
+.calendar-body {
+  padding: 10px;
+  background-color: white;
+}
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(
+    45deg,
+    #2d4a32,
+    #2d4a32 10px,
+    #1a3a1f 10px,
+    #1a3a1f 20px
+  );
+}
+
+.login-paper {
+  padding: 2rem;
+  background: linear-gradient(135deg, #2d4a32 0%, #1a3a1f 100%);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.login-title {
+  color: #FFD700;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.login-subtitle {
+  color: rgba(255, 215, 0, 0.8);
+  margin-bottom: 2rem;
+}
+
+.login-button {
+  background-color: #FFD700;
+  color: #2d4a32;
+  padding: 12px 24px;
+  border-radius: 4px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.login-button:hover {
+  background-color: #FFC107;
+}
+
+@media (max-width: 600px) {
+  .login-paper {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .login-title {
+    font-size: 1.5rem;
+  }
+  
+  .login-subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: white;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-title {
+  color: #2d4a32;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.student-id-text {
+  color: #2d4a32;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: rgba(45, 74, 50, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .dashboard-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .dashboard-title {
+    font-size: 1.2rem;
+  }
+  
+  .student-id-text {
+    font-size: 0.9rem;
+  }
+}
+
+.teacher-analytics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.student-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.student-card:hover {
+  transform: translateY(-2px);
+}
+
+.student-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.student-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+.chart-container {
+  margin-top: 20px;
+  height: 200px;
+}
+
+@media (max-width: 600px) {
+  .teacher-analytics {
+    grid-template-columns: 1fr;
+  }
+  
+  .student-card {
+    padding: 15px;
+  }
+  
+  .student-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .chart-container {
+    height: 150px;
+  }
+}
+
+.teacher-event-badge {
+  background-color: #FFD700;
+  color: #2d4a32;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.event-indicator.teacher-event {
+  background-color: #FFD700;
+}
+
+.event-indicator.teacher-event:hover {
+  background-color: #FFC107;
+} 
