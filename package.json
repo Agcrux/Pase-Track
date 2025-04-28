@@ -1,7 +1,7 @@
 {
   "name": "pase-daily-tracker-client",
   "version": "0.1.0",
-  "homepage": "https://agcrux.github.io/Pase-Track",
+  "homepage": "https://passaic.app",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.4",
